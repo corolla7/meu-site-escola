@@ -1,0 +1,274 @@
+/* ===================================================================
+   BLOG DE HISTÓRIA - C.E. ENIRA MORAES RIBEIRO
+   Paleta de cores extraída da logo da escola (escudo preto e dourado
+   com a letra "E" em vermelho/dourado). Tudo é controlado por
+   variáveis CSS, então o botão de Alto Contraste só precisa trocar
+   os valores dessas variáveis lá embaixo.
+   =================================================================== */
+
+:root {
+    /* Cores principais, vindas da logo */
+    --preto-escola: #161616;
+    --vermelho-escola: #C41E24;
+    --vermelho-escola-escuro: #8E1519;
+    --dourado-escola: #F0A800;
+    --dourado-escola-claro: #FFD54F;
+
+    /* Cores de fundo e texto */
+    --fundo-pagina: #F4F4F9;
+    --fundo-artigo: #FFFFFF;
+    --cor-texto: #1F1F1F;
+    --cor-texto-suave: #555555;
+    --cor-borda: #E0E0E0;
+
+    /* Espaçamentos e formas, reaproveitados no arquivo inteiro */
+    --raio-borda: 10px;
+    --sombra-padrao: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --transicao-padrao: 0.2s ease;
+}
+
+/* Modo de Alto Contraste: ativado via JS com body.alto-contraste.
+   Como o resto do CSS usa variáveis, isso é a única troca necessária. */
+body.alto-contraste {
+    --preto-escola: #000000;
+    --vermelho-escola: #FF3B3B;
+    --vermelho-escola-escuro: #000000;
+    --dourado-escola: #FFEE00;
+    --dourado-escola-claro: #FFEE00;
+
+    --fundo-pagina: #000000;
+    --fundo-artigo: #121212;
+    --cor-texto: #FFFFFF;
+    --cor-texto-suave: #DDDDDD;
+    --cor-borda: #FFEE00;
+}
+
+/* ===================================================================
+   BASE
+   =================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fundo-pagina);
+    color: var(--cor-texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
+}
+
+/* Link "pular para o conteúdo": só aparece quando recebe foco pelo teclado */
+.pular-link {
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    background-color: var(--dourado-escola);
+    color: var(--preto-escola);
+    padding: 10px 16px;
+    border-radius: var(--raio-borda);
+    font-weight: bold;
+    text-decoration: none;
+    transition: top var(--transicao-padrao);
+    z-index: 100;
+}
+
+.pular-link:focus {
+    top: 10px;
+}
+
+/* Foco visível e consistente em qualquer elemento navegável pelo teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--dourado-escola-claro);
+    outline-offset: 2px;
+}
+
+/* ===================================================================
+   CABEÇALHO
+   =================================================================== */
+
+.cabecalho {
+    background-color: var(--preto-escola);
+    background-image: linear-gradient(135deg, var(--preto-escola) 0%, var(--vermelho-escola-escuro) 100%);
+    color: #FFFFFF;
+    border-bottom: 5px solid var(--dourado-escola);
+    padding: 18px 20px;
+}
+
+.cabecalho__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.cabecalho__marca {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cabecalho__logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.cabecalho__titulo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--dourado-escola-claro);
+}
+
+.cabecalho__titulo p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #EEEEEE;
+}
+
+/* Botão de acessibilidade */
+.botao-acessibilidade {
+    background-color: var(--dourado-escola);
+    color: var(--preto-escola);
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    transition: transform var(--transicao-padrao), background-color var(--transicao-padrao);
+}
+
+.botao-acessibilidade:hover {
+    transform: scale(1.05);
+}
+
+.botao-acessibilidade[aria-pressed="true"] {
+    background-color: var(--vermelho-escola);
+    color: #FFFFFF;
+}
+
+/* ===================================================================
+   CONTEÚDO / POSTS
+   =================================================================== */
+
+.conteudo {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.lista-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: var(--fundo-artigo);
+    padding: 20px;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-padrao);
+    border-left: 6px solid var(--vermelho-escola);
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+.post__imagem {
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--raio-borda);
+    flex-shrink: 0;
+}
+
+.post__conteudo h2 {
+    margin-top: 0;
+    color: var(--cor-texto);
+}
+
+.post__autor {
+    font-weight: bold;
+    color: var(--vermelho-escola);
+    font-size: 14px;
+}
+
+/* Botões de reação */
+.reacoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.botao-reacao {
+    cursor: pointer;
+    padding: 8px 16px;
+    font-size: 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 20px;
+    background-color: var(--fundo-pagina);
+    color: var(--cor-texto);
+    transition: border-color var(--transicao-padrao), transform var(--transicao-padrao);
+}
+
+.botao-reacao:hover {
+    transform: translateY(-2px);
+}
+
+/* Estado "curtido", aplicado via JS com a classe .botao-reacao--ativo */
+.botao-reacao--ativo {
+    border-color: var(--vermelho-escola);
+    background-color: color-mix(in srgb, var(--vermelho-escola) 12%, var(--fundo-pagina));
+    font-weight: bold;
+}
+
+/* ===================================================================
+   RODAPÉ
+   =================================================================== */
+
+.rodape {
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--cor-texto-suave);
+    border-top: 1px solid var(--cor-borda);
+}
+
+/* ===================================================================
+   RESPONSIVO
+   =================================================================== */
+
+@media (max-width: 600px) {
+    .cabecalho__container {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .post {
+        flex-direction: column;
+    }
+
+    .post__imagem {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

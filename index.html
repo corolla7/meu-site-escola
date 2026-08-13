@@ -3,54 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog do Vinícius</title>
-    
-    <style>
-        body {
-            background-color: #F6F6F6;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+    <title>Blog de História | C.E. Enira Moraes Ribeiro</title>
+    <meta name="description" content="Blog de História do C.E. Enira Moraes Ribeiro - Paranavaí/PR. Artigos, curiosidades e descobertas sobre o passado.">
 
-        header {
-            background-color: #183C63;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px; /* Adicionado padding interno */
-        }
-
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px; /* Adicionado padding interno */
-            color: #000000;
-        }
-
-        /* Estilização da imagem adicionada no desafio */
-        img {
-            display: block;
-            max-width: 100%;  /* Garante que a imagem não ultrapasse a tela */
-            height: auto;     /* Mantém a proporção da imagem */
-            margin: 20px auto; /* Centraliza a imagem e dá espaço vertical */
-            border-radius: 8px; /* Deixa as bordas arredondadas e bonitas */
-        }
-    </style>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Meu blog tech</h1>
-        <p>Por: Vinícius</p>
+    <!-- Link de pular para o conteúdo: ajuda quem navega pelo teclado -->
+    <a href="#conteudo-principal" class="pular-link">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="cabecalho__container">
+
+            <div class="cabecalho__marca">
+                <img
+                    class="cabecalho__logo"
+                    src="assets/logo.png"
+                    alt="Logo do C.E. Enira Moraes Ribeiro: escudo preto e dourado com um livro aberto e a letra E dividida em vermelho e dourado"
+                    width="64"
+                    height="64"
+                >
+                <div class="cabecalho__titulo">
+                    <h1>Blog de História</h1>
+                    <p>C.E. Enira Moraes Ribeiro &middot; Paranavaí/PR</p>
+                </div>
+            </div>
+
+            <button id="btn-acessibilidade" class="botao-acessibilidade" aria-pressed="false">
+                <span aria-hidden="true">👁️</span> Alto Contraste
+            </button>
+
+        </div>
     </header>
 
-    <main>
-        <h2>Meu primeiro post</h2>
-        <p>Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de tecnologia.</p>
-        
-        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Um notebook aberto em cima de uma mesa mostrando linhas de código de programação de uma tela escura">
-        
-        <p>Criar páginas web tem sido uma experiência incrível. Agora o projeto já conta com textos bem divididos, cores contrastantes e imagens acessíveis!</p>
+    <main id="conteudo-principal" class="conteudo">
+
+        <!-- Os artigos ficam num <section> só, isso facilita adicionar/remover posts -->
+        <section class="lista-posts" aria-label="Lista de artigos do blog">
+
+            <article class="post">
+                <img
+                    class="post__imagem"
+                    src="https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?auto=format&fit=crop&w=500&q=80"
+                    alt="Arquitetura antiga com colunas romanas"
+                    loading="lazy"
+                >
+                <div class="post__conteudo">
+                    <h2>A Importância de Estudar o Passado</h2>
+                    <p class="post__autor">Por: Equipe de História</p>
+                    <p>Compreender os eventos que moldaram nossa sociedade é fundamental para não repetirmos os erros do passado e construirmos um futuro melhor para todos.</p>
+
+                    <div class="reacoes" data-post-id="post-1">
+                        <button class="botao-reacao" data-emoji="🏛️" type="button">
+                            <span aria-hidden="true">🏛️</span> Gostei: <span class="botao-reacao__contador">0</span>
+                        </button>
+                        <button class="botao-reacao" data-emoji="📜" type="button">
+                            <span aria-hidden="true">📜</span> Incrível: <span class="botao-reacao__contador">0</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post">
+                <img
+                    class="post__imagem"
+                    src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=500&q=80"
+                    alt="Livros antigos empilhados"
+                    loading="lazy"
+                >
+                <div class="post__conteudo">
+                    <h2>Descobertas Recentes no Paraná</h2>
+                    <p class="post__autor">Por: Alunos do Ensino Médio</p>
+                    <p>Neste artigo, vamos explorar como a história do nosso estado está conectada com os ciclos econômicos do Brasil, desde o tropeirismo até a era do café.</p>
+
+                    <div class="reacoes" data-post-id="post-2">
+                        <button class="botao-reacao" data-emoji="🏛️" type="button">
+                            <span aria-hidden="true">🏛️</span> Gostei: <span class="botao-reacao__contador">0</span>
+                        </button>
+                        <button class="botao-reacao" data-emoji="📜" type="button">
+                            <span aria-hidden="true">📜</span> Incrível: <span class="botao-reacao__contador">0</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
     </main>
 
+    <footer class="rodape">
+        <p>Projeto desenvolvido durante o curso de HTML, CSS e JavaScript da Alura.</p>
+        <p>&copy; <span id="ano-atual"></span> C.E. Enira Moraes Ribeiro</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
