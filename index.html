@@ -1,103 +1,208 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de História | C.E. Enira Moraes Ribeiro</title>
-    <meta name="description" content="Blog de História do C.E. Enira Moraes Ribeiro - Paranavaí/PR. Artigos, curiosidades e descobertas sobre o passado.">
-
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colégio Enira Moraes Ribeiro — Blog da Escola</title>
+<meta name="description" content="Blog oficial do Colégio Estadual de Ensino Fundamental, Médio e Profissionalizante Enira Moraes Ribeiro: notícias, avisos e vida escolar.">
+<link rel="icon" href="assets/logo-enira.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Link de pular para o conteúdo: ajuda quem navega pelo teclado -->
-    <a href="#conteudo-principal" class="pular-link">Pular para o conteúdo</a>
+<header class="cabecalho">
+  <div class="envelope">
+    <a href="#topo" class="marca">
+      <img src="assets/logo-enira.png" alt="Brasão do Colégio Enira Moraes Ribeiro">
+      <span class="marca-texto">
+        <span class="eyebrow">C.E.E.F.M. Profissionalizante</span>
+        <strong>Enira Moraes Ribeiro</strong>
+      </span>
+    </a>
+    <button class="botao-menu" id="botaoMenu" aria-expanded="false" aria-controls="navPrincipal">Menu</button>
+    <nav class="nav-principal" id="navPrincipal">
+      <a href="#topo">Início</a>
+      <a href="#noticias">Notícias</a>
+      <a href="#sobre">A escola</a>
+      <a href="#mural">Mural</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
 
-    <header class="cabecalho">
-        <div class="cabecalho__container">
+<div class="lombada" role="presentation"></div>
 
-            <div class="cabecalho__marca">
-                <img
-                    class="cabecalho__logo"
-                    src="assets/logo.png"
-                    alt="Logo do C.E. Enira Moraes Ribeiro: escudo preto e dourado com um livro aberto e a letra E dividida em vermelho e dourado"
-                    width="64"
-                    height="64"
-                >
-                <div class="cabecalho__titulo">
-                    <h1>Blog de História</h1>
-                    <p>C.E. Enira Moraes Ribeiro &middot; Paranavaí/PR</p>
-                </div>
-            </div>
+<main id="topo">
 
-            <button id="btn-acessibilidade" class="botao-acessibilidade" aria-pressed="false">
-                <span aria-hidden="true">👁️</span> Alto Contraste
-            </button>
-
+  <section class="hero">
+    <div class="envelope">
+      <div>
+        <p class="eyebrow">Blog da escola</p>
+        <h1>O que se escreve <em>aqui</em> vira história do colégio.</h1>
+        <p>Notícias, avisos e conquistas da comunidade do Enira Moraes Ribeiro — alunos, professores e famílias, tudo em um só lugar.</p>
+        <div class="hero-acoes">
+          <a href="#noticias" class="botao botao-primario">Ver notícias</a>
+          <a href="#sobre" class="botao botao-secundario">Conhecer a escola</a>
         </div>
-    </header>
+      </div>
+      <div class="hero-brasao">
+        <img src="assets/logo-enira.png" alt="Brasão do Colégio Enira Moraes Ribeiro">
+      </div>
+    </div>
+  </section>
 
-    <main id="conteudo-principal" class="conteudo">
+  <div class="lombada" role="presentation"></div>
 
-        <!-- Os artigos ficam num <section> só, isso facilita adicionar/remover posts -->
-        <section class="lista-posts" aria-label="Lista de artigos do blog">
+  <section id="noticias">
+    <div class="envelope">
+      <div class="titulo-secao">
+        <div>
+          <span class="eyebrow">Edição desta semana</span>
+          <h2>Notícias do colégio</h2>
+        </div>
+      </div>
 
-            <article class="post">
-                <img
-                    class="post__imagem"
-                    src="https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?auto=format&fit=crop&w=500&q=80"
-                    alt="Arquitetura antiga com colunas romanas"
-                    loading="lazy"
-                >
-                <div class="post__conteudo">
-                    <h2>A Importância de Estudar o Passado</h2>
-                    <p class="post__autor">Por: Equipe de História</p>
-                    <p>Compreender os eventos que moldaram nossa sociedade é fundamental para não repetirmos os erros do passado e construirmos um futuro melhor para todos.</p>
+      <div class="grade-noticias" id="grade-noticias">
+        <!-- Os cartões de notícia são inseridos pelo script.js a partir de script.js:noticias -->
+      </div>
+    </div>
+  </section>
 
-                    <div class="reacoes" data-post-id="post-1">
-                        <button class="botao-reacao" data-emoji="🏛️" type="button">
-                            <span aria-hidden="true">🏛️</span> Gostei: <span class="botao-reacao__contador">0</span>
-                        </button>
-                        <button class="botao-reacao" data-emoji="📜" type="button">
-                            <span aria-hidden="true">📜</span> Incrível: <span class="botao-reacao__contador">0</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
+  <div class="lombada" role="presentation"></div>
 
-            <article class="post">
-                <img
-                    class="post__imagem"
-                    src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=500&q=80"
-                    alt="Livros antigos empilhados"
-                    loading="lazy"
-                >
-                <div class="post__conteudo">
-                    <h2>Descobertas Recentes no Paraná</h2>
-                    <p class="post__autor">Por: Alunos do Ensino Médio</p>
-                    <p>Neste artigo, vamos explorar como a história do nosso estado está conectada com os ciclos econômicos do Brasil, desde o tropeirismo até a era do café.</p>
+  <section id="sobre" class="faixa-sobre">
+    <div class="envelope">
+      <div class="titulo-secao">
+        <div>
+          <span class="eyebrow">Quem somos</span>
+          <h2>A escola por trás do blog</h2>
+        </div>
+      </div>
+      <div class="grade-sobre">
+        <div>
+          <p>O Colégio Estadual de Ensino Fundamental, Médio e Profissionalizante Enira Moraes Ribeiro forma turmas do fundamental ao ensino técnico, com uma proposta que une sala de aula, oficinas profissionalizantes e projetos comunitários.</p>
+          <p>Este blog reúne o que acontece dentro dos muros da escola: resultados de projetos, competições, editais internos e a rotina de quem estuda e trabalha aqui todos os dias.</p>
+        </div>
+        <ul class="lista-dados">
+          <li><strong>3</strong><span>Turnos de funcionamento — manhã, tarde e noite, incluindo turmas profissionalizantes.</span></li>
+          <li><strong>12</strong><span>Cursos e oficinas técnicas oferecidos junto ao ensino regular.</span></li>
+          <li><strong>+40</strong><span>Anos de história formando estudantes na comunidade.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-                    <div class="reacoes" data-post-id="post-2">
-                        <button class="botao-reacao" data-emoji="🏛️" type="button">
-                            <span aria-hidden="true">🏛️</span> Gostei: <span class="botao-reacao__contador">0</span>
-                        </button>
-                        <button class="botao-reacao" data-emoji="📜" type="button">
-                            <span aria-hidden="true">📜</span> Incrível: <span class="botao-reacao__contador">0</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
+  <div class="lombada" role="presentation"></div>
 
-        </section>
+  <section id="mural">
+    <div class="envelope">
+      <div class="titulo-secao">
+        <div>
+          <span class="eyebrow">Fique de olho</span>
+          <h2>Mural de avisos</h2>
+        </div>
+      </div>
+      <div class="mural">
+        <div class="mural-item">
+          <span class="mural-data">02 SET</span>
+          <div>
+            <h4>Reunião de pais e mestres do 2º bimestre</h4>
+            <p>Entrega de boletins e conversa com os professores, por turma e horário, no auditório da escola.</p>
+          </div>
+        </div>
+        <div class="mural-item">
+          <span class="mural-data">10 SET</span>
+          <div>
+            <h4>Inscrições para o Grêmio Estudantil</h4>
+            <p>Chapas podem se inscrever na secretaria até o dia 10, com votação marcada para o fim do mês.</p>
+          </div>
+        </div>
+        <div class="mural-item">
+          <span class="mural-data">18 SET</span>
+          <div>
+            <h4>Semana das Profissões</h4>
+            <p>Palestras e oficinas com profissionais convidados, abertas a todas as turmas do ensino médio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </main>
+  <div class="lombada" role="presentation"></div>
 
-    <footer class="rodape">
-        <p>Projeto desenvolvido durante o curso de HTML, CSS e JavaScript da Alura.</p>
-        <p>&copy; <span id="ano-atual"></span> C.E. Enira Moraes Ribeiro</p>
-    </footer>
+  <section id="contato">
+    <div class="envelope">
+      <div class="titulo-secao">
+        <div>
+          <span class="eyebrow">Fale com a escola</span>
+          <h2>Contato</h2>
+        </div>
+      </div>
+      <div class="grade-contato">
+        <div class="cartao-info">
+          <h3>Secretaria</h3>
+          <div class="linha-info"><span class="rotulo">Endereço</span><span>Rua das Acácias, 450 — Centro</span></div>
+          <div class="linha-info"><span class="rotulo">Horário</span><span>Segunda a sexta, das 7h às 22h</span></div>
+          <div class="linha-info"><span class="rotulo">Telefone</span><span>(00) 0000-0000</span></div>
+          <div class="linha-info"><span class="rotulo">E-mail</span><span>contato@enirablog.escola.br</span></div>
+          <p class="nota-formulario">Dados de exemplo — substitua pelas informações reais da sua escola antes de publicar.</p>
+        </div>
+        <form class="formulario" id="formularioContato">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+          </div>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+          </div>
+          <button type="submit" class="botao botao-primario">Enviar mensagem</button>
+          <p class="nota-formulario" id="statusFormulario">Este formulário é apenas visual — para receber mensagens de verdade é preciso ligá-lo a um serviço de e-mail (veja o README).</p>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    <script src="js/script.js"></script>
+</main>
+
+<div class="lombada" role="presentation"></div>
+
+<footer class="rodape">
+  <div class="envelope">
+    <a href="#topo" class="marca">
+      <img src="assets/logo-enira.png" alt="Brasão do Colégio Enira Moraes Ribeiro" style="height:40px;">
+      <span class="marca-texto">
+        <strong>Enira Moraes Ribeiro</strong>
+      </span>
+    </a>
+    <div class="rodape-texto">
+      <p>Blog da escola — conteúdo produzido pela comunidade escolar.</p>
+      <p>© <span id="anoAtual"></span> Colégio Enira Moraes Ribeiro.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-fundo" id="modalNoticia">
+  <div class="modal-caixa">
+    <div class="modal-topo">
+      <button class="modal-fechar" id="fecharModal">Fechar</button>
+    </div>
+    <div class="modal-conteudo">
+      <span class="categoria" id="modalCategoria"></span>
+      <h3 id="modalTitulo"></h3>
+      <p class="meta" id="modalMeta"></p>
+      <p id="modalTexto"></p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

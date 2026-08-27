@@ -1,274 +1,604 @@
-/* ===================================================================
-   BLOG DE HISTÓRIA - C.E. ENIRA MORAES RIBEIRO
-   Paleta de cores extraída da logo da escola (escudo preto e dourado
-   com a letra "E" em vermelho/dourado). Tudo é controlado por
-   variáveis CSS, então o botão de Alto Contraste só precisa trocar
-   os valores dessas variáveis lá embaixo.
-   =================================================================== */
+/* =========================================================
+   Colégio Enira Moraes Ribeiro — Blog da Escola
+   Tokens extraídos do brasão: preto, vermelho e dourado.
+   ========================================================= */
 
 :root {
-    /* Cores principais, vindas da logo */
-    --preto-escola: #161616;
-    --vermelho-escola: #C41E24;
-    --vermelho-escola-escuro: #8E1519;
-    --dourado-escola: #F0A800;
-    --dourado-escola-claro: #FFD54F;
+  --preto: #0d0d0d;
+  --preto-suave: #1a1712;
+  --vermelho: #cf1f2e;
+  --vermelho-escuro: #8f1420;
+  --dourado: #f2a900;
+  --dourado-claro: #ffd873;
+  --papel: #faf6ec;
+  --papel-linha: #e8dfc9;
+  --texto: #201c14;
+  --texto-suave: #5c5546;
 
-    /* Cores de fundo e texto */
-    --fundo-pagina: #F4F4F9;
-    --fundo-artigo: #FFFFFF;
-    --cor-texto: #1F1F1F;
-    --cor-texto-suave: #555555;
-    --cor-borda: #E0E0E0;
+  --fonte-display: "Fraunces", "Georgia", serif;
+  --fonte-corpo: "Source Sans 3", "Segoe UI", sans-serif;
+  --fonte-utilitaria: "IBM Plex Mono", monospace;
 
-    /* Espaçamentos e formas, reaproveitados no arquivo inteiro */
-    --raio-borda: 10px;
-    --sombra-padrao: 0 4px 10px rgba(0, 0, 0, 0.08);
-    --transicao-padrao: 0.2s ease;
+  --largura-maxima: 1120px;
+  --raio: 2px;
 }
 
-/* Modo de Alto Contraste: ativado via JS com body.alto-contraste.
-   Como o resto do CSS usa variáveis, isso é a única troca necessária. */
-body.alto-contraste {
-    --preto-escola: #000000;
-    --vermelho-escola: #FF3B3B;
-    --vermelho-escola-escuro: #000000;
-    --dourado-escola: #FFEE00;
-    --dourado-escola-claro: #FFEE00;
+* { box-sizing: border-box; }
 
-    --fundo-pagina: #000000;
-    --fundo-artigo: #121212;
-    --cor-texto: #FFFFFF;
-    --cor-texto-suave: #DDDDDD;
-    --cor-borda: #FFEE00;
+html {
+  scroll-behavior: smooth;
 }
 
-/* ===================================================================
-   BASE
-   =================================================================== */
-
-* {
-    box-sizing: border-box;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
 body {
-    margin: 0;
-    background-color: var(--fundo-pagina);
-    color: var(--cor-texto);
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.5;
-    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
+  margin: 0;
+  background: var(--papel);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  line-height: 1.55;
 }
 
-/* Link "pular para o conteúdo": só aparece quando recebe foco pelo teclado */
-.pular-link {
-    position: absolute;
-    top: -50px;
-    left: 10px;
-    background-color: var(--dourado-escola);
-    color: var(--preto-escola);
-    padding: 10px 16px;
-    border-radius: var(--raio-borda);
-    font-weight: bold;
-    text-decoration: none;
-    transition: top var(--transicao-padrao);
-    z-index: 100;
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.envelope {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.pular-link:focus {
-    top: 10px;
+/* ---------- Divisor "lombada de livro" (elemento assinatura) ----------
+   Inspirado no chevron vermelho/dourado do brasão: duas faixas em V
+   que se repetem como se fossem páginas abertas — usado para separar
+   toda seção principal do site. */
+.lombada {
+  height: 14px;
+  width: 100%;
+  background-image:
+    linear-gradient(135deg, transparent 45%, var(--vermelho) 45%, var(--vermelho) 50%, transparent 50%),
+    linear-gradient(135deg, transparent 45%, var(--dourado) 45%, var(--dourado) 50%, transparent 50%);
+  background-size: 34px 14px, 34px 14px;
+  background-position: 0 0, 17px 0;
+  background-repeat: repeat-x;
+  background-color: var(--preto);
 }
 
-/* Foco visível e consistente em qualquer elemento navegável pelo teclado */
-a:focus-visible,
-button:focus-visible {
-    outline: 3px solid var(--dourado-escola-claro);
-    outline-offset: 2px;
-}
-
-/* ===================================================================
-   CABEÇALHO
-   =================================================================== */
-
+/* ---------- Cabeçalho ---------- */
 .cabecalho {
-    background-color: var(--preto-escola);
-    background-image: linear-gradient(135deg, var(--preto-escola) 0%, var(--vermelho-escola-escuro) 100%);
-    color: #FFFFFF;
-    border-bottom: 5px solid var(--dourado-escola);
-    padding: 18px 20px;
+  background: var(--preto);
+  color: var(--papel);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 3px solid var(--dourado);
 }
 
-.cabecalho__container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
+.cabecalho .envelope {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  gap: 16px;
 }
 
-.cabecalho__marca {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--papel);
 }
 
-.cabecalho__logo {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+.marca img {
+  height: 48px;
+  width: auto;
 }
 
-.cabecalho__titulo h1 {
-    margin: 0;
-    font-size: 24px;
-    color: var(--dourado-escola-claro);
+.marca-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
 }
 
-.cabecalho__titulo p {
-    margin: 4px 0 0 0;
-    font-size: 14px;
-    color: #EEEEEE;
+.marca-texto .eyebrow {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dourado);
 }
 
-/* Botão de acessibilidade */
-.botao-acessibilidade {
-    background-color: var(--dourado-escola);
-    color: var(--preto-escola);
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: var(--raio-borda);
-    cursor: pointer;
-    transition: transform var(--transicao-padrao), background-color var(--transicao-padrao);
+.marca-texto strong {
+  font-family: var(--fonte-display);
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 
-.botao-acessibilidade:hover {
-    transform: scale(1.05);
+.nav-principal {
+  display: flex;
+  gap: 4px;
 }
 
-.botao-acessibilidade[aria-pressed="true"] {
-    background-color: var(--vermelho-escola);
-    color: #FFFFFF;
+.nav-principal a {
+  text-decoration: none;
+  color: var(--papel);
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: var(--raio);
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-/* ===================================================================
-   CONTEÚDO / POSTS
-   =================================================================== */
-
-.conteudo {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
+.nav-principal a:hover,
+.nav-principal a:focus-visible {
+  background: var(--vermelho);
+  color: #fff;
 }
 
-.lista-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.botao-menu {
+  display: none;
+  background: none;
+  border: 1px solid var(--dourado);
+  color: var(--papel);
+  padding: 8px 10px;
+  border-radius: var(--raio);
+  cursor: pointer;
 }
 
-.post {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    background-color: var(--fundo-artigo);
-    padding: 20px;
-    border-radius: var(--raio-borda);
-    box-shadow: var(--sombra-padrao);
-    border-left: 6px solid var(--vermelho-escola);
-    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao);
+:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 2px;
 }
 
-.post__imagem {
-    width: 250px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: var(--raio-borda);
-    flex-shrink: 0;
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--preto);
+  color: var(--papel);
+  padding: 64px 0 56px;
+  position: relative;
+  overflow: hidden;
 }
 
-.post__conteudo h2 {
-    margin-top: 0;
-    color: var(--cor-texto);
+.hero .envelope {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 48px;
+  align-items: center;
 }
 
-.post__autor {
-    font-weight: bold;
-    color: var(--vermelho-escola);
-    font-size: 14px;
+.hero .eyebrow {
+  font-family: var(--fonte-utilitaria);
+  color: var(--dourado);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
 }
 
-/* Botões de reação */
-.reacoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+.hero h1 {
+  font-family: var(--fonte-display);
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  font-weight: 600;
 }
 
-.botao-reacao {
-    cursor: pointer;
-    padding: 8px 16px;
-    font-size: 15px;
-    border: 1px solid var(--cor-borda);
-    border-radius: 20px;
-    background-color: var(--fundo-pagina);
-    color: var(--cor-texto);
-    transition: border-color var(--transicao-padrao), transform var(--transicao-padrao);
+.hero h1 em {
+  font-style: italic;
+  color: var(--dourado-claro);
 }
 
-.botao-reacao:hover {
-    transform: translateY(-2px);
+.hero p {
+  color: #d9d3c2;
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin: 0 0 26px;
 }
 
-/* Estado "curtido", aplicado via JS com a classe .botao-reacao--ativo */
-.botao-reacao--ativo {
-    border-color: var(--vermelho-escola);
-    background-color: color-mix(in srgb, var(--vermelho-escola) 12%, var(--fundo-pagina));
-    font-weight: bold;
+.hero-acoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* ===================================================================
-   RODAPÉ
-   =================================================================== */
+.botao {
+  display: inline-block;
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: var(--raio);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
 
+.botao-primario {
+  background: var(--vermelho);
+  color: #fff;
+}
+.botao-primario:hover { background: var(--vermelho-escuro); transform: translateY(-1px); }
+
+.botao-secundario {
+  border-color: var(--dourado);
+  color: var(--papel);
+  background: transparent;
+}
+.botao-secundario:hover { background: var(--dourado); color: var(--preto); transform: translateY(-1px); }
+
+.hero-brasao {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-brasao img {
+  width: min(280px, 80%);
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.45));
+}
+
+/* ---------- Seções gerais ---------- */
+section { padding: 64px 0; }
+
+.titulo-secao {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+
+.titulo-secao .eyebrow {
+  display: block;
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vermelho-escuro);
+  margin-bottom: 8px;
+}
+
+.titulo-secao h2 {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0;
+}
+
+.link-ver-todas {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--vermelho-escuro);
+  border-bottom: 2px solid var(--dourado);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+.link-ver-todas:hover { color: var(--vermelho); }
+
+/* ---------- Cartões de notícia ---------- */
+.grade-noticias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.cartao-noticia {
+  background: #fff;
+  border: 1px solid var(--papel-linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cartao-noticia:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(20, 16, 8, 0.12);
+}
+
+.cartao-noticia .faixa {
+  height: 6px;
+  background: linear-gradient(90deg, var(--vermelho) 0 50%, var(--dourado) 50% 100%);
+}
+
+.cartao-corpo { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+.categoria {
+  align-self: flex-start;
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--papel);
+  border: 1px solid var(--papel-linha);
+  color: var(--vermelho-escuro);
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+
+.cartao-corpo h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.cartao-corpo p {
+  color: var(--texto-suave);
+  font-size: 0.94rem;
+  margin: 0;
+  flex: 1;
+}
+
+.meta {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.72rem;
+  color: var(--texto-suave);
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.botao-leitura {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vermelho-escuro);
+  cursor: pointer;
+  text-align: left;
+  border-bottom: 2px solid var(--dourado);
+  align-self: flex-start;
+}
+.botao-leitura:hover { color: var(--vermelho); }
+
+/* ---------- Destaque em faixa preta (Sobre) ---------- */
+.faixa-sobre {
+  background: var(--preto);
+  color: var(--papel);
+}
+
+.faixa-sobre .titulo-secao h2,
+.faixa-sobre .titulo-secao .eyebrow { color: var(--papel); }
+.faixa-sobre .titulo-secao .eyebrow { color: var(--dourado); }
+
+.grade-sobre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.grade-sobre p { color: #d9d3c2; }
+
+.lista-dados {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.lista-dados li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: 14px;
+}
+
+.lista-dados strong {
+  font-family: var(--fonte-display);
+  font-size: 1.6rem;
+  color: var(--dourado);
+  min-width: 64px;
+}
+
+.lista-dados span { color: #d9d3c2; font-size: 0.92rem; }
+
+/* ---------- Avisos / mural ---------- */
+.mural {
+  background: #fff;
+  border: 1px dashed var(--papel-linha);
+  border-radius: var(--raio);
+  padding: 22px 26px;
+  display: grid;
+  gap: 14px;
+}
+
+.mural-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--papel-linha);
+}
+.mural-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.mural-data {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.75rem;
+  color: var(--vermelho-escuro);
+  text-transform: uppercase;
+}
+
+.mural-item h4 { margin: 0 0 4px; font-family: var(--fonte-display); font-size: 1.02rem; }
+.mural-item p { margin: 0; color: var(--texto-suave); font-size: 0.9rem; }
+
+/* ---------- Contato ---------- */
+.grade-contato {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.cartao-info {
+  background: #fff;
+  border: 1px solid var(--papel-linha);
+  border-radius: var(--raio);
+  padding: 26px;
+  display: grid;
+  gap: 16px;
+}
+
+.cartao-info h3 { font-family: var(--fonte-display); margin: 0; font-size: 1.15rem; }
+
+.linha-info { display: flex; gap: 10px; font-size: 0.94rem; }
+.linha-info .rotulo {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--vermelho-escuro);
+  min-width: 84px;
+  padding-top: 2px;
+}
+
+.formulario { display: grid; gap: 14px; }
+
+.campo { display: grid; gap: 6px; }
+
+.campo label {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-suave);
+}
+
+.campo input,
+.campo textarea {
+  font-family: var(--fonte-corpo);
+  font-size: 0.95rem;
+  padding: 11px 13px;
+  border: 1px solid var(--papel-linha);
+  border-radius: var(--raio);
+  background: #fff;
+  color: var(--texto);
+}
+
+.campo textarea { resize: vertical; min-height: 110px; }
+
+.nota-formulario {
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.72rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Rodapé ---------- */
 .rodape {
-    text-align: center;
-    padding: 24px 20px;
-    margin-top: 20px;
-    font-size: 13px;
-    color: var(--cor-texto-suave);
-    border-top: 1px solid var(--cor-borda);
+  background: var(--preto);
+  color: #b9b2a0;
+  padding: 40px 0 26px;
 }
 
-/* ===================================================================
-   RESPONSIVO
-   =================================================================== */
-
-@media (max-width: 600px) {
-    .cabecalho__container {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .post {
-        flex-direction: column;
-    }
-
-    .post__imagem {
-        width: 100%;
-        height: 180px;
-    }
+.rodape .envelope {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
 }
 
-/* Respeita quem prefere menos animações */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
+.rodape .marca strong { color: var(--papel); }
+
+.rodape-texto { font-size: 0.85rem; }
+.rodape-texto p { margin: 4px 0; }
+
+/* ---------- Modal de leitura de notícia ---------- */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,13,13,0.72);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 20px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.modal-fundo.aberto { display: flex; }
+
+.modal-caixa {
+  background: var(--papel);
+  max-width: 640px;
+  width: 100%;
+  border-radius: var(--raio);
+  overflow: hidden;
+  border: 1px solid var(--papel-linha);
+}
+
+.modal-topo {
+  background: var(--preto);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-fechar {
+  background: none;
+  border: 1px solid var(--dourado);
+  color: var(--papel);
+  font-family: var(--fonte-utilitaria);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+.modal-fechar:hover { background: var(--dourado); color: var(--preto); }
+
+.modal-conteudo { padding: 30px 34px 36px; }
+.modal-conteudo h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.5rem;
+  margin: 6px 0 14px;
+}
+.modal-conteudo p { color: var(--texto-suave); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 880px) {
+  .nav-principal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--preto);
+    flex-direction: column;
+    padding: 8px 24px 16px;
+    display: none;
+    border-bottom: 3px solid var(--dourado);
+  }
+  .nav-principal.aberto { display: flex; }
+  .botao-menu { display: inline-block; }
+
+  .hero .envelope { grid-template-columns: 1fr; text-align: left; }
+  .hero-brasao { order: -1; }
+  .hero-brasao img { width: 160px; }
+
+  .grade-noticias { grid-template-columns: 1fr; }
+  .grade-sobre { grid-template-columns: 1fr; }
+  .grade-contato { grid-template-columns: 1fr; }
+  .mural-item { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media (min-width: 881px) and (max-width: 1080px) {
+  .grade-noticias { grid-template-columns: repeat(2, 1fr); }
 }
